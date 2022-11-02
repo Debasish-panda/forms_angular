@@ -1,0 +1,42 @@
+<h2>Reactive registration form</h2>
+<div>
+   <form [formGroup]="regForm" (ngSubmit)="Register(regForm)">
+      <div>
+         Enter id : <input type="text" placeholder="Enter your id" name="id" formControlName="id">
+      </div>
+      <div>
+         First name : <input type="text" placeholder="Enter your first name" name="fname" formControlName="fname">
+         <div *ngIf="regForm.controls['fname'].touched && !regForm.controls['fname'].valid">
+            <span *ngIf="regForm.controls['fname'].hasError('required')">
+               firstname is required !!
+            </span>
+            <span *ngIf="regForm.controls['fname'].hasError('minlength')">
+               firstname is should be 5 char !!
+            </span>
+            <span *ngIf="regForm.controls['fname'].hasError('maxlenght')">
+               firstname is less than 10 char !!
+            </span>
+         </div>
+      </div>
+      <div>
+         Last name : <input type="text" placeholder="Enter your last name" name="lname" formControlName="lname">
+      </div>
+
+      <div>
+         Email id : <input type="text" placeholder="Enter your Email" name="email" formControlName="email">
+      </div>
+      <div formArrayName="mobiles">
+         <div *ngFor="let mob of regForm.get('mobiles').controls; index as ids"> <!-- here we mentioned for loop to get the form controls by loop as dynamic we will load the input and index is used to get the unique formcontrolname -->
+            Mobile number : <input type="text" placeholder="Enter your number" name="mobile" formControlName="ids">
+            <button (click)="deleterow(ids)">Delete</button>
+         </div>
+         <button (click)="addmore()">Add more</button>
+      </div>
+      <div>
+         <button type="submit">Register</button>
+         <!-- <button type="reset">Reset</button>
+         <button (click)="reest()">Reset 2</button>
+         <button (click)="filldata()">Set value all</button> -->
+      </div>
+   </form>
+</div>

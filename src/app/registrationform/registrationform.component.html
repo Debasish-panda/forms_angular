@@ -1,0 +1,34 @@
+<p>registrationform works!</p>
+<h2>Registration form</h2>
+<div>
+    <form [formGroup]="userform" (ngSubmit)="registration()">
+        <div>
+            First Name : <input type="text" placeholder="enter first name" formControlName="fname">
+            <span *ngIf="fnamefc.invalid">first name required</span>
+            <!-- <span *ngIf="userform.get('fname').invalid">first name required</span>  this also we can use but above one easy  and use in corporate big company-->
+            <!--In this we also we can do validatio message another example we can see in reactiveform html file-->
+        </div>
+        <div>
+            Last Name : <input type="text" placeholder="enter last name" formControlName="lname">
+            <span *ngIf="lnamelc.invalid">last name required</span> <!--Here we used a long code which is not use in corporate so we can write this code in ts file by get method or set method-->
+        </div>
+        <div formGroupName="address">
+            <div>
+                House no : <input type="text" placeholder="enter house number" formControlName="houseno">
+                <span *ngIf="addressc.get('houseno').invalid">house number required</span>
+            </div>
+            <div>
+                City Name : <input type="text" placeholder="enter City name" formControlName="city">
+                <span *ngIf="addressc.get('city').invalid">city name required</span>
+            </div>
+            <div>
+                Pin code : <input type="text" placeholder="enter Pin number" formControlName="pin">
+                <span *ngIf="addressc.get('pin').invalid">pin code required</span>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>
